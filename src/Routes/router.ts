@@ -10,7 +10,7 @@ routes.post("/mail", (req: Request, res: Response) => {
 
 // Rota para a página inicial
 routes.get("/", (req: Request, res: Response) => {
-    res.send("Hello World!");
+    res.send("Funcionando!");
 });
 
 export default routes;
