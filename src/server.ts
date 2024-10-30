@@ -13,9 +13,14 @@ class Server {
     }
 
     private middlewares(): void {
-        this.app.use(cors()); 
+        this.app.use(cors({
+            origin: "*", // Permitir todas as origens (para desenvolvimento)
+            allowedHeaders: ["Content-Type", "Authorization"],
+            credentials: true,
+            methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+        }));
         this.app.use(express.json());
-        this.app.options('*', cors()); 
+        this.app.options('*', cors()); // Responde a todas as requisições OPTIONS
     }
 
     private routes(): void {
