@@ -13,14 +13,10 @@ class Server {
     }
 
     private middlewares(): void {
-        this.app.use(cors({
-            origin: 'http://localhost:3000', // Permite apenas esta origem
-            methods: ['GET', 'POST'], // Métodos permitidos
-            allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
-        }));
+        this.app.use(cors()); 
         this.app.use(express.json());
+        this.app.options('*', cors()); 
     }
-    
 
     private routes(): void {
         this.app.use(routes);
