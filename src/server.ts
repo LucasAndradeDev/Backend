@@ -8,8 +8,8 @@ class Server {
 
     constructor() {
         this.app = express();
-        this.middlewares();
         this.routes();
+        this.middlewares();
     }
 
     private middlewares(): void {
@@ -20,7 +20,7 @@ class Server {
             methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
         }));
         this.app.use(express.json());
-        this.app.options('*', cors()); // Responde a todas as requisições OPTIONS
+
     }
 
     private routes(): void {
