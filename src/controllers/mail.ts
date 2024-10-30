@@ -9,6 +9,7 @@ export const sendMailRoute = (req: Request, res: Response) => {
     console.log("Email:", email);
     console.log("Telefone:", phone);
     console.log("Mensagem:", message);
+    
 
     // Validação dos campos obrigatórios
     if (!name  || !phone || !message) {
