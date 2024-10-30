@@ -13,9 +13,27 @@ class Server {
     }
 
     private middlewares(): void {
-        // this.app.use(cors()); 
+        this.app.use(cors({
+            origin: [
+                'http://localhost:3000', // Origem de desenvolvimento local
+                'https://lucas-andrade-dev.vercel.app', // Origem de produção
+            ],
+            methods: ['GET', 'POST', 'OPTIONS'],
+            allowedHeaders: ['Content-Type', 'Authorization'],
+        }));
+        
         this.app.use(express.json());
-        this.app.options('*', cors()); 
+
+        // Habilita CORS para todas as rotas OPTIONS
+        this.app.options('*', cors({
+            origin: [
+                'http://localhost:3000',
+                'https://lucas-andrade-zpq6wxv0u-lucas-projects-2c06066a.vercel.app',
+                'https://lucas-andrade-dev.vercel.app',
+            ],
+            methods: ['GET', 'POST', 'OPTIONS'],
+            allowedHeaders: ['Content-Type', 'Authorization'],
+        }));
     }
 
     private routes(): void {
