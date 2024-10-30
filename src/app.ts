@@ -1,12 +1,4 @@
-import server from "./server"; // Correto
-import "dotenv/config";
+import { startServer } from "./server"; // Importa a função para iniciar o servidor
 
-
-function startServer() {
-    const port = process.env.PORT || 3333;
-    server.app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
-    });
-}
-
+// Inicia o servidor
 startServer();
