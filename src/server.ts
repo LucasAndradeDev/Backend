@@ -1,5 +1,5 @@
 import express from "express";
-import type { Application, Request, Response, NextFunction } from "express";
+import type { Application } from "express";
 import cors from "cors";
 import routes from "./Routes/router";
 
@@ -13,26 +13,9 @@ class Server {
     }
 
     private middlewares(): void {
-        // Configure CORS usando o middleware express, adicionando também o cabeçalho manualmente
-        this.app.use(cors());
-        
-        // Adiciona cabeçalhos CORS para todas as respostas
-        this.app.use((req: Request, res: Response, next: NextFunction) => {
-            res.header("Access-Control-Allow-Origin", "*"); // Altere "*" para uma origem específica se necessário
-            res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-            res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-            next();
-        });
-
+        this.app.use(cors()); 
         this.app.use(express.json());
-
-        // Garante que a preflight request tenha os cabeçalhos corretos
-        this.app.options('*', (req: Request, res: Response) => {
-            res.header("Access-Control-Allow-Origin", "*"); // Altere "*" se necessário
-            res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-            res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-            res.sendStatus(200);
-        });
+        this.app.options('*', cors()); 
     }
 
     private routes(): void {
