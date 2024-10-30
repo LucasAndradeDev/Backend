@@ -13,7 +13,7 @@ class Server {
     }
 
     private middlewares(): void {
-        this.app.use(cors()); 
+        // this.app.use(cors()); 
         this.app.use(express.json());
         this.app.options('*', cors()); 
     }
